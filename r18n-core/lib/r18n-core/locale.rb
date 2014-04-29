@@ -118,7 +118,12 @@ module R18n
         :time_pm => 'PM',
         :time_format => ' %H:%M',
         :full_format => '%e %B',
-        :year_format => '_ %Y'
+        :year_format => '_ %Y',
+
+        # See format_list; it's okay for list_end to be undefined
+        :list_2 => '%1, %2',
+        :list_start => '%1, %2',
+        :list_middle => '%1, %2'
 
     def month_standalone; month_names; end
     def month_abbrs;      month_names; end
@@ -303,6 +308,67 @@ module R18n
         'n'
       end
     end
+
+    # Return a list of strings joined together in a sentence. This uses the
+    # list formatting algorithm defined in the Unicode Locale Data Markup
+    # Language, part 2, section 11
+    # (http://www.unicode.org/reports/tr35/tr35-general.html#ListPatterns).
+    #
+    # For purposes of R18n, each locale has four patterns defined:
+    # * list_2 - for lists of exactly 2 things (the rest of the patterns are
+    #     used for lists of more than two things)
+    # * list_start - for the first two elements of a list
+    # * list_middle - for all elements of the list between the first and last 2
+    # * list_end (OPTIONAL) - for the last 2 elements of a list; if not
+    #     explicitly defined, then the value of list_2 is used
+    #
+    # It might help to explain the algorithm better in pseudocode.  Let's say
+    # each of the patterns above is defined as a function taking two strings.
+    # Here is how lists of 2, 3, and 4 elements would be iteratively
+    # transformed:
+    #
+    #     ["A", "B"]
+    #         -> list_2("A", "B")
+    #         -> "A and B"
+    #
+    #     ["A", "B", "C"]
+    #         -> list_start("A", list_end("B", "C"))
+    #         -> list_start("A", "B, and C")
+    #         -> "A, B, and C"
+    #
+    #     ["A", "B", "C", "D"]
+    #         -> list_start("A", list_middle("B", list_end("C", "D")))
+    #         -> list_start("A", list_middle("B", "C, and D"))
+    #         -> list_start("A", "B, C, and D")
+    #         -> "A, B, C, and D"
+    #
+    def format_list(list)
+      case list.size
+      when 0
+        ''
+      when 1
+        list.first
+      when 2
+        pattern2(list_2, *list)
+      else
+        output = pattern2(defined?(list_end) ? list_end : list_2, list[-2], list[-1])
+        if list.size > 3
+          list[1...-2].reverse.each do |item|
+            output = pattern2(list_middle, item, output)
+          end
+        end
+        pattern2(list_start, list[0], output)
+      end
+    end
+
+    protected
+
+    # Used by format_list
+    # FIXME: Use the regular variable substitution method instead
+    def pattern2(pattern, x, y)
+      pattern.sub('%1', x).sub('%2', y)
+    end
+
   end
 
   module Locales; end

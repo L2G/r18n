@@ -170,4 +170,27 @@ describe R18n::Locale do
     R18n.locale('nolocale-DL').code.should == 'nolocale-dl'
   end
 
+  context "formats lists" do
+    subject { R18n.locale('nolocale') }
+
+    example "that are empty" do
+      subject.format_list([]).should == ''
+    end
+
+    example "of 1 item" do
+      subject.format_list(['A']).should == 'A'
+    end
+
+    example "of 2 items" do
+      subject.format_list(%w(A B)).should == 'A, B'
+    end
+
+    example "of 3 items" do
+      subject.format_list(%w(A B C)).should == 'A, B, C'
+    end
+
+    example "of 4 items" do
+      subject.format_list(%w(A B C D)).should == 'A, B, C, D'
+    end
+  end
 end

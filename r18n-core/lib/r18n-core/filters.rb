@@ -247,6 +247,16 @@ module R18n
     content
   end
 
+  Filters.add('list', :listification) do |content, config, param|
+    type = config[:locale].pluralize(param.size)
+    type = 'n' if not content.has_key?(type)
+    listified = content[type]
+    if /\%\*/ =~ listified
+      listified.gsub!(/\%\*/, config[:locale].format_list(param))
+    end
+    listified
+  end
+
   Filters.add(Untranslated, :untranslated) do |v, c, translated, untranslated|
     "#{translated}[#{untranslated}]"
   end

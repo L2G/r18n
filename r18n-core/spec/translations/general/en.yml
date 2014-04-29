@@ -40,3 +40,6 @@ markdown:
 textile:
   simple: !!textile _Hi!_
   html: !!textile _Hi!_<br />
+
+name_list: !!list
+  n: "%*"
