@@ -16,7 +16,9 @@ module R18n
         :year_format => '%Y. _',
 
         :number_decimal => ",",
-        :number_group   => " "
+        :number_group   => " ",
+
+        :list_2 => '%1 és %2'
 
     def format_integer(integer)
       str = integer.to_s

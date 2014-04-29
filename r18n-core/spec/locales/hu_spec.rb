@@ -15,4 +15,11 @@ describe R18n::Locales::Hu do
     hu.l(Time.at(0).utc).should        == '1970. 01. 01., 00:00'
     hu.l(Time.at(0).utc, :full).should == '1970. január  1., 00:00'
   end
+
+  context 'formats lists in Hungarian' do
+    subject { R18n.locale('hu') }
+    specify { subject.format_list(%w(A Á)    ).should eq 'A és Á'       }
+    specify { subject.format_list(%w(A Á B)  ).should eq 'A, Á és B'    }
+    specify { subject.format_list(%w(A Á B C)).should eq 'A, Á, B és C' }
+  end
 end
