@@ -14,6 +14,11 @@ module R18n
         :year_format => '%Y年_',
 
         :number_decimal => ".",
-        :number_group   => " "
+        :number_group   => " ",
+
+        :list_2      => '%1和%2',
+        :list_start  => '%1、%2',
+        :list_middle => '%1、%2'
+        # :list_end is the same as :list_2 when undefined
   end
 end
