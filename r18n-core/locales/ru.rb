@@ -18,7 +18,9 @@ module R18n
         :date_format => '%d.%m.%Y',
 
         :number_decimal => ",",
-        :number_group   => " "
+        :number_group   => " ",
+
+        :list_2 => '%1 и %2'
 
     def pluralize(n)
       if 0 == n
