@@ -17,7 +17,12 @@ module R18n
       :year_format => '_, %Y',
 
       :number_decimal => ".",
-      :number_group   => ","
+      :number_group   => ",",
+
+      :list_2      => '%1และ%2',
+      :list_start  => '%1 %2',
+      :list_middle => '%1 %2',
+      :list_end    => '%1 และ%2'
 
     def strftime(time, format)
       year = (time.year + 543).to_s
