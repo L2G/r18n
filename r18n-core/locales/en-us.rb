@@ -9,6 +9,8 @@ module R18n::Locales
 
         :time_format => ' %I:%M %p',
         :date_format => '%m/%d/%Y',
-        :full_format => '%B %e'
+        :full_format => '%B %e',
+
+        :list_end => '%1, and %2'
   end
 end

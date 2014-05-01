@@ -17,7 +17,9 @@ module R18n
         :year_format => '_, %Y',
 
         :number_decimal => ".",
-        :number_group   => ","
+        :number_group   => ",",
+
+        :list_2 => '%1 and %2'
 
     def ordinalize(n)
       if (11..13).include?(n % 100)
