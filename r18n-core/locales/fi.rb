@@ -20,7 +20,9 @@ module R18n
         :full_format => '%e. %B',
 
         :number_decimal => ",",
-        :number_group   => " "
+        :number_group   => " ",
+
+        :list_2 => '%1 ja %2'
 
     def format_time_full(time, *params)
       format_date_full(time) + ' kello' + format_time(time)
