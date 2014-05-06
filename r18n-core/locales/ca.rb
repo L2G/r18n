@@ -17,6 +17,8 @@ module R18n
         :year_format => '_ de %Y',
 
         :number_decimal => ",",
-        :number_group   => "."
+        :number_group   => ".",
+
+        :list_2   => '%1 i %2'
   end
 end
