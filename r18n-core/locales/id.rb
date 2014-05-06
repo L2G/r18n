@@ -12,6 +12,9 @@ module R18n
         :date_format => '%d/%m/%Y',
 
         :number_decimal => ",",
-        :number_group   => "."
+        :number_group   => ".",
+
+        :list_2   => '%1 dan %2',
+        :list_end => '%1, dan %2'
   end
 end
