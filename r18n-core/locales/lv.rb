@@ -20,7 +20,9 @@ module R18n
         :year_format => '%Y.gada _',
 
         :number_decimal => ",",
-        :number_group   => " "
+        :number_group   => " ",
+
+        :list_2 => '%1 un %2'
 
     def pluralize(n)
       if 0 == n
