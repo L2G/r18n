@@ -16,6 +16,8 @@ module R18n
         :full_format => '%e. %B %Y',
 
         :number_decimal => ",",
-        :number_group   => " "
+        :number_group   => " ",
+
+        :list_2 => '%1 og %2'
   end
 end
