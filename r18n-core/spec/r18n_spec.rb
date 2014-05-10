@@ -13,7 +13,7 @@ describe R18n do
   it "stores I18n" do
     i18n = R18n::I18n.new('en')
     R18n.set(i18n)
-    R18n.get.should == i18n
+    R18n.get.should eq i18n
 
     R18n.reset!
     R18n.get.should be_nil
@@ -26,19 +26,19 @@ describe R18n do
     i18n = R18n::I18n.new('ru')
     R18n.set { i18n }
 
-    R18n.get.should == i18n
+    R18n.get.should eq i18n
   end
 
   it "creates I18n object by shortcut" do
     R18n.set('en', DIR)
     R18n.get.should be_a(R18n::I18n)
-    R18n.get.locales.should == [R18n.locale('en')]
-    R18n.get.translation_places.should == [R18n::Loader::YAML.new(DIR)]
+    R18n.get.locales.should eq [R18n.locale('en')]
+    R18n.get.translation_places.should eq [R18n::Loader::YAML.new(DIR)]
   end
 
   it "allows to return I18n arguments in setter block" do
     R18n.set { 'en' }
-    R18n.get.locales.should == [R18n.locale('en')]
+    R18n.get.locales.should eq [R18n.locale('en')]
   end
 
   it "clears cache" do
@@ -60,59 +60,59 @@ describe R18n do
   it "stores I18n via thread_set" do
     i18n = R18n::I18n.new('en')
     R18n.thread_set(i18n)
-    R18n.get.should == i18n
+    R18n.get.should eq i18n
 
     i18n = R18n::I18n.new('ru')
     R18n.thread_set { i18n }
-    R18n.get.should == i18n
+    R18n.get.should eq i18n
   end
 
   it "allows to temporary change locale" do
     R18n.default_places = DIR
-    R18n.change('en').locales.should == [R18n.locale('en')]
+    R18n.change('en').locales.should eq [R18n.locale('en')]
     R18n.change('en').should have(1).translation_places
-    R18n.change('en').translation_places.first.dir.should == DIR.to_s
+    R18n.change('en').translation_places.first.dir.should eq DIR.to_s
   end
 
   it "allows to temporary change current locales" do
     R18n.set('ru')
-    R18n.change('en').locales.should == [R18n.locale('en'), R18n.locale('ru')]
-    R18n.change('en').translation_places.should == R18n.get.translation_places
-    R18n.get.locale.code.should.should == 'ru'
+    R18n.change('en').locales.should eq [R18n.locale('en'), R18n.locale('ru')]
+    R18n.change('en').translation_places.should eq R18n.get.translation_places
+    R18n.get.locale.code.should.should eq 'ru'
   end
 
   it "allows to get Locale to temporary change" do
     R18n.set('ru')
-    R18n.change(R18n.locale('en')).locale.code.should == 'en'
+    R18n.change(R18n.locale('en')).locale.code.should eq 'en'
   end
 
   it "has shortcut to load locale" do
-    R18n.locale('ru').should == R18n::Locale.load('ru')
+    R18n.locale('ru').should eq R18n::Locale.load('ru')
   end
 
   it "stores default loader class" do
-    R18n.default_loader.should == R18n::Loader::YAML
+    R18n.default_loader.should eq R18n::Loader::YAML
     R18n.default_loader = Class
-    R18n.default_loader.should == Class
+    R18n.default_loader.should eq Class
   end
 
   it "stores cache" do
     R18n.cache.should be_a(Hash)
 
     R18n.cache = { 1 => 2 }
-    R18n.cache.should == { 1 => 2 }
+    R18n.cache.should eq({ 1 => 2 })
 
     R18n.clear_cache!
-    R18n.cache.should == { }
+    R18n.cache.should eq({ })
   end
 
   it "converts Time to Date" do
-    R18n::Utils.to_date(Time.now).should == Date.today
+    R18n::Utils.to_date(Time.now).should eq Date.today
   end
 
   it "maps hash" do
     R18n::Utils.hash_map({'a' => 1, 'b' => 2}) { |k, v| [k + 'a', v + 1] }.
-      should == { 'aa' => 2, 'ba' => 3 }
+      should eq({ 'aa' => 2, 'ba' => 3 })
   end
 
   it "merges hash recursively" do
@@ -120,23 +120,23 @@ describe R18n do
     b = {          :b => {:bb => 2, :bc => 2}, :c => 2 }
 
     R18n::Utils.deep_merge!(a, b)
-    a.should == { :a => 1, :b => { :ba => 1, :bb => 2, :bc => 2 }, :c => 2 }
+    a.should eq({ :a => 1, :b => { :ba => 1, :bb => 2, :bc => 2 }, :c => 2 })
   end
 
   it "has l and t methods" do
     R18n.set('en')
-    t.yes.should == 'Yes'
-    l(Time.at(0).utc).should == '01/01/1970 00:00'
+    t.yes.should eq 'Yes'
+    l(Time.at(0).utc).should eq '01/01/1970 00:00'
   end
 
   it "has helpers mixin" do
     obj = R18n::I18n.new('en')
     R18n.set(obj)
 
-    r18n.should  == obj
-    i18n.should  == obj
-    t.yes.should == 'Yes'
-    l(Time.at(0).utc).should == '01/01/1970 00:00'
+    r18n.should  eq obj
+    i18n.should  eq obj
+    t.yes.should eq 'Yes'
+    l(Time.at(0).utc).should eq '01/01/1970 00:00'
   end
 
   it "returns available translations" do
@@ -148,7 +148,7 @@ describe R18n do
   it "uses default places" do
     R18n.default_places = DIR
     R18n.set('en')
-    t.one.should == 'One'
+    t.one.should eq 'One'
     R18n.available_locales.should =~ [R18n.locale('ru'),
                                       R18n.locale('en'),
                                       R18n.locale('nolocale')]
@@ -156,7 +156,7 @@ describe R18n do
 
   it "sets default places by block" do
     R18n.default_places { DIR }
-    R18n.default_places.should == DIR
+    R18n.default_places.should eq DIR
   end
 
   it "allows to ignore default places" do

@@ -329,10 +329,6 @@ UselessAssignment:
 VariableName:
   Enabled: false
 
-# Offense count: 257
-Void:
-  Enabled: false
-
 # Offense count: 3
 # Cop supports --auto-correct.
 WhenThen:

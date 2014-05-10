@@ -15,11 +15,11 @@ describe R18n::Loader::YAML do
   end
 
   it "returns dir with translations" do
-    @loader.dir.should == DIR.expand_path.to_s
+    @loader.dir.should eq DIR.expand_path.to_s
   end
 
   it "equals to another YAML loader with same dir" do
-    @loader.should == R18n::Loader::YAML.new(DIR)
+    @loader.should eq R18n::Loader::YAML.new(DIR)
     @loader.should_not == Class.new(R18n::Loader::YAML).new(DIR)
   end
 
@@ -30,15 +30,15 @@ describe R18n::Loader::YAML do
   end
 
   it "loads translation" do
-    @loader.load(R18n.locale('ru')).should == {
+    @loader.load(R18n.locale('ru')).should eq({
       'one'   => 'Один',
       'in'    => { 'another' => { 'level' => 'Иерархический' } },
       'typed' => R18n::Typed.new('my', 'value')
-    }
+    })
   end
 
   it "returns hash by dir" do
-    @loader.hash.should == R18n::Loader::YAML.new(DIR).hash
+    @loader.hash.should eq R18n::Loader::YAML.new(DIR).hash
   end
 
   it "loads in dir recursively" do
@@ -50,10 +50,10 @@ describe R18n::Loader::YAML do
                                 R18n.locale('nolocale')]
 
     translation = loader.load(R18n.locale('en'))
-    translation['two'].should       == 'Two'
-    translation['in']['two'].should == 'Two'
-    translation['ext'].should       == 'Extension'
-    translation['deep'].should      == 'Deep one'
+    translation['two'].should       eq 'Two'
+    translation['in']['two'].should eq 'Two'
+    translation['ext'].should       eq 'Extension'
+    translation['deep'].should      eq 'Deep one'
   end
 
 end
