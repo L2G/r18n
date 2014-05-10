@@ -18,6 +18,8 @@ module R18n
         :time_format => '%H:%M',
 
         :number_decimal => ".",
-        :number_group   => ","
+        :number_group   => ",",
+
+        :list_2 => '%1 ve %2'
   end
 end
