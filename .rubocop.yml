@@ -1,0 +1,13 @@
+AllCops:
+  Exclude:
+    - vendor/cache/**/*
+
+# Configuration items in rubocop-todo.yml need to have one of the following done
+# with them:
+#   1. delete them and correct the problems they are hiding, or
+#   2. if they should continue to be active due to style considerations, move
+#      them here.
+#
+# Thus rubocop-todo.yml should eventually be eliminated.
+
+inherit_from: rubocop-todo.yml
