@@ -160,10 +160,6 @@ LineLength:
   Max: 221
 
 # Offense count: 1
-Loop:
-  Enabled: false
-
-# Offense count: 1
 # Cop supports --auto-correct.
 MethodCallParentheses:
   Enabled: false

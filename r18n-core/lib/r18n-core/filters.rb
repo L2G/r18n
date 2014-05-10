@@ -131,10 +131,11 @@ module R18n
 
         unless name
           @last_auto_name ||= 0
-          begin
+          loop do
             @last_auto_name += 1
             name = @last_auto_name
-          end while defined.has_key? name
+            break unless defined.has_key? name
+          end
         else
           delete(name)
         end
