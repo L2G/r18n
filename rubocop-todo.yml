@@ -105,11 +105,6 @@ EmptyLineBetweenDefs:
 EmptyLinesAroundBody:
   Enabled: false
 
-# Offense count: 4
-# Configuration parameters: AlignWith, SupportedStyles.
-EndAlignment:
-  Enabled: false
-
 # Offense count: 2
 Eval:
   Enabled: false

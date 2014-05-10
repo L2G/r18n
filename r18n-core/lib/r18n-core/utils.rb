@@ -57,11 +57,12 @@ module R18n
     def self.deep_merge!(a, b)
       b.each_pair do |key, value|
         another = a[key]
-        a[key] = if another.is_a?(Hash) && value.is_a?(Hash)
-          deep_merge!(another, value)
-        else
-          value
-        end
+        a[key] =
+          if another.is_a?(Hash) && value.is_a?(Hash)
+            deep_merge!(another, value)
+          else
+            value
+          end
       end
       a
     end

@@ -27,13 +27,14 @@ module R18n
   module YamlMethods
     # Detect class for private type depend on YAML parser.
     def detect_yaml_private_type
-      @private_type_class = if defined?(JRUBY_VERSION)
-        ::YAML::Yecht::PrivateType
-      elsif '1.8.' == RUBY_VERSION[0..3]
-        ::YAML::PrivateType
-      elsif 'syck' == ::YAML::ENGINE.yamler
-        ::Syck::PrivateType
-      end
+      @private_type_class =
+        if defined?(JRUBY_VERSION)
+          ::YAML::Yecht::PrivateType
+        elsif '1.8.' == RUBY_VERSION[0..3]
+          ::YAML::PrivateType
+        elsif 'syck' == ::YAML::ENGINE.yamler
+          ::Syck::PrivateType
+        end
     end
 
     # Register global types in Psych

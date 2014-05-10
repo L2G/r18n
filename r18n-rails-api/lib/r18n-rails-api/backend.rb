@@ -115,11 +115,12 @@ module R18n
 
     def translation_to_hash(translation)
       Utils.hash_map(translation.to_hash) do |key, value|
-        value = if value.is_a? Hash
-          translation_to_hash(value)
-        else
-          format_value(value)
-        end
+        value =
+          if value.is_a? Hash
+            translation_to_hash(value)
+          else
+            format_value(value)
+          end
         [key.to_sym, value]
       end
     end
@@ -141,11 +142,12 @@ module R18n
           end
         end
 
-      result = if result.is_a? TranslatedString
-        result.get_untranslated(key)
-      else
-        result[last, params]
-      end
+      result =
+        if result.is_a? TranslatedString
+          result.get_untranslated(key)
+        else
+          result[last, params]
+        end
 
       format_value(result)
     end
