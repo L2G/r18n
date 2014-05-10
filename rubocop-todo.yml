@@ -119,12 +119,6 @@ FileName:
 GlobalVars:
   Enabled: false
 
-# Offense count: 564
-# Cop supports --auto-correct.
-# Configuration parameters: SupportedStyles.
-HashSyntax:
-  EnforcedStyle: hash_rockets
-
 # Offense count: 5
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.

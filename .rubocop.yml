@@ -2,6 +2,12 @@ AllCops:
   Exclude:
     - vendor/cache/**/*
 
+# Hash-rocket style must be enforced only for Ruby 1.8.x compatibility.  When
+# this compatibility is no longer needed, EnforcedStyle can be changed to ruby19
+# (which is Rubocop's default at this writing).
+HashSyntax:
+  EnforcedStyle: hash_rockets
+
 # Configuration items in rubocop-todo.yml need to have one of the following done
 # with them:
 #   1. delete them and correct the problems they are hiding, or
