@@ -19,6 +19,8 @@ module R18n::Locales
                                 Грудень},
 
         :time_am => ' ранку',
-        :time_pm => ' вечора'
+        :time_pm => ' вечора',
+
+        :list_2 => '%1 та %2'
   end
 end
