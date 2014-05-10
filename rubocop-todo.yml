@@ -237,10 +237,6 @@ RescueModifier:
 Semicolon:
   Enabled: false
 
-# Offense count: 2
-ShadowingOuterLocalVariable:
-  Enabled: false
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.

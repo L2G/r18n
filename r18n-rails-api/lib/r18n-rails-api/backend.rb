@@ -44,7 +44,7 @@ module R18n
       result = lookup(locale, scope, key, separator, params)
 
       if result.is_a? Untranslated
-        options = options.reject { |key, value| key == :default }
+        options = options.reject { |k, v| k == :default }
 
         default = []        if default.nil?
         default = [default] unless default.is_a? Array
@@ -134,11 +134,11 @@ module R18n
       last = keys.pop.to_sym
 
       result =
-        keys.inject(get_i18n(locale).t) do |node, key|
+        keys.inject(get_i18n(locale).t) do |node, node_key|
           if node.is_a? TranslatedString
-            node.get_untranslated(key)
+            node.get_untranslated(node_key)
           else
-            node[key]
+            node[node_key]
           end
         end
 
