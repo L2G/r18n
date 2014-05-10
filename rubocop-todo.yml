@@ -84,11 +84,6 @@ ColonMethodCall:
 CyclomaticComplexity:
   Max: 11
 
-# Offense count: 3
-# Cop supports --auto-correct.
-DeprecatedClassMethods:
-  Enabled: false
-
 # Offense count: 11
 # Cop supports --auto-correct.
 DeprecatedHashMethods:

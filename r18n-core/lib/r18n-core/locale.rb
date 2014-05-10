@@ -69,7 +69,7 @@ module R18n
 
     # Is +locale+ has info file.
     def self.exists?(locale)
-      File.exists?(File.join(LOCALES_DIR, locale.to_s + '.rb'))
+      File.exist?(File.join(LOCALES_DIR, locale.to_s + '.rb'))
     end
 
     # Load locale by RFC 3066 +code+.

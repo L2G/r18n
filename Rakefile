@@ -50,7 +50,7 @@ end
 
 desc 'Remove all generated files'
 task :clobber do
-  rm_r 'log' if File.exists? 'log'
+  rm_r 'log' if File.exist? 'log'
   each_rake 'clobber'
 end
 
