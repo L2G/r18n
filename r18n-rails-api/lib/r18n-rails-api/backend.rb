@@ -127,17 +127,19 @@ module R18n
     # Find translation by <tt>scope.key(params)</tt> in current R18n I18n
     # object.
     def lookup(locale, scope, key, separator, params)
-      keys = (Array(scope) + Array(key)).map { |k|
-        k.to_s.split(separator || ::I18n.default_separator) }.flatten
+      keys = (Array(scope) + Array(key)).map do |k|
+        k.to_s.split(separator || ::I18n.default_separator)
+      end.flatten
       last = keys.pop.to_sym
 
-      result = keys.inject(get_i18n(locale).t) do |node, key|
-        if node.is_a? TranslatedString
-          node.get_untranslated(key)
-        else
-          node[key]
+      result =
+        keys.inject(get_i18n(locale).t) do |node, key|
+          if node.is_a? TranslatedString
+            node.get_untranslated(key)
+          else
+            node[key]
+          end
         end
-      end
 
       result = if result.is_a? TranslatedString
         result.get_untranslated(key)

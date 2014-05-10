@@ -36,10 +36,6 @@ AndOr:
 AsciiComments:
   Enabled: false
 
-# Offense count: 2
-BlockAlignment:
-  Enabled: false
-
 # Offense count: 30
 BlockComments:
   Enabled: false
