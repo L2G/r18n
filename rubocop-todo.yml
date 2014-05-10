@@ -298,11 +298,6 @@ SpaceInsideHashLiteralBraces:
 SpaceInsideParens:
   Enabled: false
 
-# Offense count: 1
-# Cop supports --auto-correct.
-StringConversionInInterpolation:
-  Enabled: false
-
 # Offense count: 297
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.

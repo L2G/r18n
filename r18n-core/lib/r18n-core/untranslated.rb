@@ -77,7 +77,7 @@ module R18n
     def method_missing(name, *params)
       # It is need to fix some hack in specs
       if name == :to_ary
-        raise NoMethodError, "undefined method `to_ary' for #{to_s}"
+        raise NoMethodError, "undefined method `to_ary' for #{self}"
       end
 
       self[name]
